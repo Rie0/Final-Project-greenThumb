@@ -1,0 +1,35 @@
+<p>volunteer-form works!</p>
+
+<form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="volunteerName">Volunteer Name:</label>
+      <input type="text" id="volunteerName" formControlName="volunteerName" />
+      <div *ngIf="volunteerForm.get('volunteerName')?.hasError('required')">
+        Volunteer name is required.
+      </div>
+    </div>
+  
+    <div>
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" id="phoneNumber" formControlName="phoneNumber" />
+      <div *ngIf="volunteerForm.get('phoneNumber')?.hasError('required')">
+        Phone number is required.
+      </div>
+      <div *ngIf="volunteerForm.get('phoneNumber')?.hasError('pattern')">
+        Enter a valid phone number (10 digits).
+      </div>
+    </div>
+  
+    <div>
+      <label for="volunteerEmail">Volunteer Email:</label>
+      <input type="email" id="volunteerEmail" formControlName="volunteerEmail" />
+      <div *ngIf="volunteerForm.get('volunteerEmail')?.hasError('required')">
+        Email is required.
+      </div>
+      <div *ngIf="volunteerForm.get('volunteerEmail')?.hasError('email')">
+        Enter a valid email address.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="!volunteerForm.valid">Add Volunteer</button>
+  </form>

@@ -1,0 +1,20 @@
+<p>assign-volunteer-to-project works!</p>
+
+<div>
+    <h2>Assign Volunteer to Project</h2>
+  
+    <!-- Project Selection -->
+    <label for="projectSelect">Select Project:</label>
+    <select id="projectSelect" [(ngModel)]="selectedProjectId">
+      <option *ngFor="let project of projects" [value]="project.projectId">{{ project.projectName }}</option>
+    </select>
+  
+    <!-- Volunteer Selection -->
+    <label for="volunteerSelect">Select Volunteer:</label>
+    <select id="volunteerSelect" [(ngModel)]="selectedVolunteerId">
+      <option *ngFor="let volunteer of volunteers" [value]="volunteer.volunteerId">{{ volunteer.volunteerName }}</option>
+    </select>
+  
+    <!-- Assign Button -->
+    <button (click)="assignVolunteerToProject()">Assign Volunteer</button>
+  </div>
