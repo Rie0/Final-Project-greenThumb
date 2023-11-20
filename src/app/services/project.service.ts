@@ -14,4 +14,18 @@ export class ProjectService {
   getProjects(): Observable<any> {
     return this.http.get(this.API_URL);
   }
+
+  getSingleProject(projectId: number): Observable<any> {
+    const url = `${this.API_URL}/${projectId}`;
+    return this.http.get(url);
+  }
+  updateProjectName(projectId: number, projectNameDTO: any): Observable<any> {
+    const url = `${this.API_URL}/name/${projectId}`;
+    return this.http.patch(url, projectNameDTO);
+  }
+  
+  deleteProject(projectId: number): Observable<any> {
+    const url = `${this.API_URL}/${projectId}`;
+    return this.http.delete(url);
+  }
 }

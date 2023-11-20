@@ -1,1 +1,16 @@
 <p>volunteers works!</p>
+<div>
+<input type="text" [(ngModel)]="searchString" (input)="onSearch()" placeholder="Search..."/>
+
+<div *ngFor="let volunteer of volunteers" class="container">
+  <h3>{{ volunteer.volunteerName }}</h3>
+  <p>Phone Number: {{ volunteer.volunteerInfo?.phoneNumber }}</p>
+  <p>Email: {{ volunteer.volunteerInfo?.volunteerEmail }}</p>
+  <p>Project: {{ volunteer.project?.projectName }} ({{ volunteer.project?.projectType }})</p>
+</div>
+  <!-- Error message -->
+  <div *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+</div>

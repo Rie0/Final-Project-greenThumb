@@ -14,13 +14,18 @@ export class VolunteerService {
     return this.http.get<any[]>(this.API_URL);
   }
 
-  addVolunteer(volunteerData: any): Observable<any> { //post volunteer
-    return this.http.post(`${this.API_URL}`, volunteerData);
+  postVolunteer(volunteerData: any): Observable<any> { //post volunteer
+    return this.http.post<void>(this.API_URL, volunteerData); //is void nessasary?
   }
 
   assignVolunteerToProject(volunteerId: number, projectId: number): Observable<any> {
     const url = `${this.API_URL}/${volunteerId}/assign/${projectId}`;
     return this.http.post(url, {});
+  }
+
+  getVolunteersContainingString(searchString: string): Observable<any[]> {
+    const searchUrl = `${this.API_URL}/str?str=${searchString}`;
+    return this.http.get<any[]>(searchUrl);
   }
 
 }
