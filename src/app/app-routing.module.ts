@@ -5,7 +5,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { SingleProjectComponent } from './single-project/single-project.component';
 import { VolunteerFormComponent } from './volunteer-form/volunteer-form.component';
 import { VolunteersComponent } from './volunteers/volunteers.component';
-import { AssignVolunteerToProjectComponent } from './assign-volunteer-to-project/assign-volunteer-to-project.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 const routes: Routes = [
@@ -30,8 +30,8 @@ const routes: Routes = [
   component: ProjectsComponent
 },
 {
-  path: 'Assign Volunteer to Project', 
-  component: AssignVolunteerToProjectComponent
+path: '**',
+component: ErrorPageComponent
 }
 ];
 

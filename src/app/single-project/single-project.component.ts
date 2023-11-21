@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { ProjectService } from '../services/project.service';
+import { VolunteerService } from '../services/volunteer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -7,18 +8,24 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './single-project.component.html',
   styleUrls: ['./single-project.component.css']
 })
-export class SingleProjectComponent implements OnInit{
 
+export class SingleProjectComponent implements OnInit {
   project: any = {};
   newProjectName: string = '';
+  selectedProjectId!: number;
+  selectedVolunteerId!: number;
+  projects!: any[]; // Update the type based on your project model
+  volunteers!: any[]; // Update the type based on your volunteer model
 
   constructor(
     private route: ActivatedRoute,
-    private projectService: ProjectService
-  ) { }
+    private projectService: ProjectService,
+    private volunteerService: VolunteerService
+  ) {}
 
   ngOnInit() {
     this.getSingleproject();
+    this.fetchProjectsAndVolunteers();
   }
 
   getSingleproject() {
@@ -32,6 +39,17 @@ export class SingleProjectComponent implements OnInit{
       }
     });
   }
+
+  fetchProjectsAndVolunteers() {
+    this.projectService.getProjects().subscribe((data) => {
+      this.projects = data;
+    });
+
+    this.volunteerService.getVolunteers().subscribe((data) => {
+      this.volunteers = data;
+    });
+  }
+
   updateProjectName(): void {
     const projectId = this.route.snapshot.params['projectId'];
     const projectNameDTO = { projectName: this.newProjectName };
@@ -46,10 +64,10 @@ export class SingleProjectComponent implements OnInit{
       }
     });
   }
-  
+
   deleteProject(): void {
     const projectId = this.route.snapshot.params['projectId'];
-  
+
     this.projectService.deleteProject(projectId).subscribe({
       next: () => {
         console.log('Project deleted successfully.');
@@ -59,5 +77,21 @@ export class SingleProjectComponent implements OnInit{
         console.log('Error deleting project:', e);
       }
     });
+  }
+
+  assignVolunteerToProject() {
+    // Call your service method to assign the volunteer to the currently open project
+    this.volunteerService
+      .assignVolunteerToProject(this.selectedVolunteerId, this.project.projectId)
+      .subscribe(
+        (response) => {
+          console.log('Volunteer assigned to project successfully', response);
+          alert("Volunteer enlisted successfully.")
+        },
+        (error) => {
+          console.error('Error assigning volunteer to project', error);
+          alert("Error enlisting Volunteer.")
+        }
+      );
   }
 }

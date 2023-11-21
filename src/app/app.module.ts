@@ -10,7 +10,6 @@ import { ProjectsComponent } from './projects/projects.component';
 import { VolunteersComponent } from './volunteers/volunteers.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { VolunteerFormComponent } from './volunteer-form/volunteer-form.component';
-import { AssignVolunteerToProjectComponent } from './assign-volunteer-to-project/assign-volunteer-to-project.component';
 import { SingleProjectComponent } from './single-project/single-project.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { SingleProjectComponent } from './single-project/single-project.componen
     VolunteersComponent,
     ErrorPageComponent,
     VolunteerFormComponent,
-    AssignVolunteerToProjectComponent,
     SingleProjectComponent
   ],
   imports: [
