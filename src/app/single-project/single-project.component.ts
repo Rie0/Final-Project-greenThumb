@@ -14,10 +14,11 @@ export class SingleProjectComponent implements OnInit {
   newProjectName: string = '';
   selectedProjectId!: number;
   selectedVolunteerId!: number;
-  projects!: any[]; // Update the type based on your project model
-  volunteers!: any[]; // Update the type based on your volunteer model
+  projects!: any[]; 
+  volunteers!: any[]; 
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private projectService: ProjectService,
     private volunteerService: VolunteerService
@@ -58,6 +59,7 @@ export class SingleProjectComponent implements OnInit {
       next: () => {
         console.log('Project name updated successfully.');
         // trigger a reload.
+        this.getSingleproject();
       },
       error: (e) => {
         console.log('Error updating project name:', e);
@@ -71,7 +73,9 @@ export class SingleProjectComponent implements OnInit {
     this.projectService.deleteProject(projectId).subscribe({
       next: () => {
         console.log('Project deleted successfully.');
-        // add navigate to project component.
+        //navigate to project component.  
+        this.router.navigate(['/Project List']);
+        alert('project deleted succesfully')
       },
       error: (e) => {
         console.log('Error deleting project:', e);
@@ -80,7 +84,7 @@ export class SingleProjectComponent implements OnInit {
   }
 
   assignVolunteerToProject() {
-    // Call your service method to assign the volunteer to the currently open project
+    // Assign the volunteer to the currently open project.
     this.volunteerService
       .assignVolunteerToProject(this.selectedVolunteerId, this.project.projectId)
       .subscribe(
