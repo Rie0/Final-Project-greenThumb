@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { VolunteerService } from '../services/volunteer.service';
 
 @Component({
   selector: 'app-volunteers',
   templateUrl: './volunteers.component.html',
-  styleUrls: ['./volunteers.component.css']
+  styleUrls: ['./volunteers.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class VolunteersComponent implements OnInit{
   volunteers: any[]=[];

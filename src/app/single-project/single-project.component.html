@@ -1,37 +1,39 @@
-<div>
+<div class="w3-container w3-card-4 w3-light-grey w3-margin">
     <!-- Project Details -->
     <h2>{{ project.projectName }}</h2>
-    <p>Project Description: {{ project.description }}</p>
-    <p>Start Date: {{ project.startDate }}</p>
-    <p>End Date: {{ project.endDate }}</p>
+    <p>Project Type: {{ project.projectType }}</p>
+
   
     <!-- Update Project Name -->
-    <div>
-      <label for="newProjectName">New Project Name:</label>
-      <input type="text" id="newProjectName" [(ngModel)]="newProjectName" />
-      <button (click)="updateProjectName()">Update Project Name</button>
+    <div class="w3-section">
+      <label class="w3-text-blue" for="newProjectName">New Project Name:</label>
+      <input class="w3-input w3-border" type="text" id="newProjectName" [(ngModel)]="newProjectName" />
+      <button class="w3-button w3-blue" (click)="updateProjectName()">Update Project Name</button>
     </div>
   
     <!-- Delete Project -->
-    <div>
-      <button (click)="deleteProject()">Delete Project</button>
+    <div class="w3-section">
+      <button class="w3-button w3-red" (click)="deleteProject()">Delete Project</button>
     </div>
   </div>
   
-  <div>
+  <div class="w3-container w3-card-4 w3-light-grey w3-margin">
     <!-- Assign Volunteer to Project -->
     <h2>Assign Volunteer to Project</h2>
-    <div>
+    <div class="w3-section">
       <p>Selected Project: {{ project.projectName }}</p>
-      
+  
       <!-- Volunteer Selection -->
-      <label for="volunteerSelect">Select Volunteer:</label>
-      <select id="volunteerSelect" [(ngModel)]="selectedVolunteerId">
+      <label class="w3-text-blue" for="volunteerSelect">Select Volunteer:</label>
+      <select class="w3-select w3-border" id="volunteerSelect" [(ngModel)]="selectedVolunteerId">
         <option *ngFor="let volunteer of volunteers" [value]="volunteer.volunteerId">{{ volunteer.volunteerName }}</option>
       </select>
-    
+  
       <!-- Assign Button -->
-      <button (click)="assignVolunteerToProject()">Assign Volunteer</button>
+      <button class="w3-button w3-green" (click)="assignVolunteerToProject()">Assign Volunteer</button>
     </div>
-    
   </div>
+
+  <!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-opacity ">
+</footer>

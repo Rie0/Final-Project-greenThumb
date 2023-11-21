@@ -28,7 +28,7 @@ export class ProjectsComponent  implements OnInit{
   projectTypeImages: { [key: string]: string } = {
     Ocean_cleaning: '../../assets/images/Ocean.jpg',
     Tree_Planting: '../../assets/images/Tree.PNG',
-    Painting_Houses: '../../assets/images/Painting.PNG'
+    Painting_Houses: '../../assets/images/painting.PNG'
   };
 
   getProjects(): void{
