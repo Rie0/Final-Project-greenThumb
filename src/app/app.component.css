@@ -1,0 +1,38 @@
+body,h1 {font-family: "Raleway", sans-serif}
+
+.fancy-navbar {
+    display: flex;
+    justify-content: space-between; /* Distribute items to each end */
+    align-items: center; /* Center items vertically */
+    background-color: #333;
+    padding: 15px;
+    font-family: "Raleway", sans-serif;
+  }
+  
+  .fancy-navbar ul {
+    list-style-type: none; /* Remove bullet points from the list */
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .fancy-navbar li {
+    margin-right: 20px; /* Spacing between navbar items */
+  }
+  
+  .fancy-navbar a {
+    
+    text-decoration: none; /* Remove underlines from links */
+    color: #fff; /* Text color */
+    font-size: 16px; /* Font size */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  .fancy-navbar a:hover {
+    color: rgb(79, 117, 81); /* Change text color on hover */
+  }
+  .logo span {
+    color: #fff;  
+    font-size: 25px; /* Adjust the font size as needed */
+   
+  }

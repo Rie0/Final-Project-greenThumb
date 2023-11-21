@@ -25,6 +25,12 @@ export class ProjectsComponent  implements OnInit{
     return projectType.replace(/_/g, ' ').replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
   }
 
+  projectTypeImages: { [key: string]: string } = {
+    Ocean_cleaning: '../../assets/images/Ocean.jpg',
+    Tree_Planting: '../../assets/images/Tree.PNG',
+    Painting_Houses: '../../assets/images/Painting.PNG'
+  };
+
   getProjects(): void{
     this.projectService.getProjects()
       .pipe(

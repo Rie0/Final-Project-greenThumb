@@ -6,6 +6,7 @@
     <a [routerLink]="['/Project', project.projectId]">
     <h3>{{ project.projectName }}</h3>
     </a> 
+    <img [src]="projectTypeImages[project.projectType]" alt="Project Image">
     <p>{{ getFormattedProjectType(project.projectType) }}</p>
     <p>add click to see volunteers in other component</p>
 </div>
