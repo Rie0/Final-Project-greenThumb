@@ -3,6 +3,8 @@ import { ProjectService } from '../services/project.service';
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 
+
+
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -16,6 +18,11 @@ export class ProjectsComponent  implements OnInit{
 
    ngOnInit() {
     this.getProjects();
+  }
+
+  getFormattedProjectType(projectType: string): string {
+    // Replace underscores with spaces and capitalize the first letter of each word.
+    return projectType.replace(/_/g, ' ').replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
   }
 
   getProjects(): void{
