@@ -36,9 +36,20 @@ export class ProjectService {
   }
 
   deleteProject(projectId: number): Observable<any> {
-    const url = `${this.API_URL}/${projectId}`;
-    return this.http.delete(url);
-  }
+  const url = `${this.API_URL}/${projectId}`;
+  
+  return this.http.delete(url).pipe(
+    catchError((error) => {
+      alert('Cannot remove a project that has enlisted volunteers');
+      console.error('Error deleting project:', error);
+
+      // Rethrow the error or return a custom error object
+      return throwError(error);
+    })
+  );
+}
+    
+  
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
