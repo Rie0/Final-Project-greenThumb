@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { ProjectService } from '../services/project.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-project',
@@ -39,7 +39,7 @@ export class SingleProjectComponent implements OnInit{
     this.projectService.updateProjectName(projectId, projectNameDTO).subscribe({
       next: () => {
         console.log('Project name updated successfully.');
-        // add update the local project object or trigger a reload.
+        // trigger a reload.
       },
       error: (e) => {
         console.log('Error updating project name:', e);
@@ -53,7 +53,7 @@ export class SingleProjectComponent implements OnInit{
     this.projectService.deleteProject(projectId).subscribe({
       next: () => {
         console.log('Project deleted successfully.');
-        // add navigate to another page or update the UI.
+        // add navigate to project component.
       },
       error: (e) => {
         console.log('Error deleting project:', e);

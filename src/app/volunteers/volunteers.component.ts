@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { VolunteerService } from '../services/volunteer.service';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-volunteers',
@@ -20,7 +18,7 @@ export class VolunteersComponent implements OnInit{
     this.getVolunteers();
   }
 
-  getVolunteers() { //handle errors
+  getVolunteers() {
     this.volunteerService.getVolunteers().subscribe(
       (volunteers: any[]) => {
         //console.log('Volunteers:', volunteers);
@@ -32,19 +30,21 @@ export class VolunteersComponent implements OnInit{
     );
   }
 
-  onSearch(){
+  onSearch() {
     if (this.searchString.trim() !== '') {
-      this.volunteerService.getVolunteersContainingString(this.searchString).pipe(
-        catchError((error) => {
-          console.log("Error searching volunteers, volunteer doesn't exsist:", error);
-          this.errorMessage = 'No matching volunteers found.';
-          return of([]); // Return an empty array to clear the volunteer list
-        })
-      ).subscribe((volunteers: any[]) => {
-        console.log('Filtered Volunteers:', volunteers);
-        this.volunteers = volunteers;
-      });
+      this.volunteerService.getVolunteersContainingString(this.searchString).subscribe(
+        (filteredVolunteers: any[]) => {
+          this.volunteers = filteredVolunteers;
+          this.errorMessage = ''; // Clear any previous error messages
+        },
+        (error: any) => {
+          console.log('Error:', error);
+          this.errorMessage = 'No volunteer found.'; // Display an error message
+          this.volunteers = []; //return an empty list when no volunteer is found
+        }
+      );
     } else {
+      // If the search string is empty.
       this.getVolunteers();
     }
   }

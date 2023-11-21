@@ -1,6 +1,12 @@
 <p>volunteers works!</p>
 <div>
-<input type="text" [(ngModel)]="searchString" (input)="onSearch()" placeholder="Search..."/>
+
+
+
+<div>
+  <label for="searchInput">Search by name: </label>
+  <input type="text" id="searchInput" [(ngModel)]="searchString" (input)="onSearch()" placeholder="Search..."/>
+</div>
 
 <div *ngFor="let volunteer of volunteers" class="container">
   <h3>{{ volunteer.volunteerName }}</h3>
@@ -9,8 +15,8 @@
   <p>Project: {{ volunteer.project?.projectName }} ({{ volunteer.project?.projectType }})</p>
 </div>
   <!-- Error message -->
-  <div *ngIf="errorMessage">
-    <p>{{ errorMessage }}</p>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
   </div>
 
 </div>

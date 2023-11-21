@@ -1,14 +1,32 @@
-
 <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()">
-    <label for="volunteerName">Volunteer Name:</label>
-    <input type="text" id="volunteerName" formControlName="volunteerName" />
-  
+  <label for="volunteerName">Volunteer Name:</label>
+  <input type="text" id="volunteerName" formControlName="volunteerName" />
+  <div *ngIf="volunteerForm.get('volunteerName')?.hasError('required') && volunteerForm.get('volunteerName')?.touched" class="error-msg">
+    Volunteer Name is required.
+  </div>
+  <div *ngIf="volunteerForm.get('volunteerName')?.hasError('minlength') && volunteerForm.get('volunteerName')?.touched" class="error-msg">
+    Volunteer Name must be at least 3 characters.
+  </div>
+
   <div formGroupName="volunteerInfo">
     <label for="phoneNumber">Phone Number:</label>
     <input type="text" id="phoneNumber" formControlName="phoneNumber" />
+    <div *ngIf="volunteerForm.get('volunteerInfo.phoneNumber')?.hasError('required') && volunteerForm.get('volunteerInfo.phoneNumber')?.touched" class="error-msg">
+      Phone Number is required.
+    </div>
+    <div *ngIf="volunteerForm.get('volunteerInfo.phoneNumber')?.hasError('pattern') && volunteerForm.get('volunteerInfo.phoneNumber')?.touched" class="error-msg">
+      Invalid Phone Number.
+    </div>
 
     <label for="volunteerEmail">Email:</label>
     <input type="text" id="volunteerEmail" formControlName="volunteerEmail" />
+    <div *ngIf="volunteerForm.get('volunteerInfo.volunteerEmail')?.hasError('required') && volunteerForm.get('volunteerInfo.volunteerEmail')?.touched" class="error-msg">
+      Email is required.
+    </div>
+    <div *ngIf="volunteerForm.get('volunteerInfo.volunteerEmail')?.hasError('email') && volunteerForm.get('volunteerInfo.volunteerEmail')?.touched" class="error-msg">
+      Invalid email.
+    </div>
   </div>
-    <button type="submit" [disabled]="volunteerForm.invalid">Submit</button>
-  </form>
+
+  <button type="submit" [disabled]="volunteerForm.invalid">Submit</button>
+</form>

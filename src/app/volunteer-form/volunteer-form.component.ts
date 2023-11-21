@@ -7,36 +7,42 @@ import { VolunteerService } from 'src/app/services/volunteer.service';
   templateUrl: './volunteer-form.component.html',
   styleUrls: ['./volunteer-form.component.css']
 })
-export class VolunteerFormComponent {
-  volunteerForm: FormGroup;
+export class VolunteerFormComponent implements OnInit{
+  volunteerForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private volunteerService: VolunteerService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  initForm(): void {
     this.volunteerForm = this.fb.group({
-      volunteerName: ['', Validators.required],
+      volunteerName: ['', [Validators.required, Validators.minLength(3)]],
       volunteerInfo: this.fb.group({
-        phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+        phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]], //Must be numbers an 10 digits.
         volunteerEmail: ['', [Validators.required, Validators.email]],
       }),
     });
   }
 
   onSubmit() {
-    if (this.volunteerForm && this.volunteerForm.valid) {
-      const volunteerData = this.volunteerForm.value;
-      console.log('Form Data:', volunteerData);
-      this.volunteerService.postVolunteer(volunteerData).subscribe(
+    if (this.volunteerForm.valid) {
+      this.volunteerService.postVolunteer(this.volunteerForm.value).subscribe(
         () => {
           console.log('Volunteer saved successfully.');
           // Reset the form after successful submission
           if (this.volunteerForm) {
+            alert("Volunteer added successfully.");
             this.volunteerForm.reset();
           }
         },
         (error) => {
           console.error('Error saving volunteer:', error);
+          alert("An error occurred.");
         }
       );
     }
