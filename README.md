@@ -1,4 +1,5 @@
 # GreenThumb
+[Backend Part](https://github.com/Rie0/MidtermProject_GreenThumb)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
 
