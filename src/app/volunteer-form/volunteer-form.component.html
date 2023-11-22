@@ -1,44 +1,36 @@
-
 <h2 class="w3-center">Volunteer Registration</h2>
-<!-- Volunteer Form -->
+
 <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()" class="w3-container w3-card-4 w3-light-grey w3-text-dark-grey w3-margin">
-  <!-- Volunteer Name -->
   <div class="w3-section">
     <label for="volunteerName">Volunteer Name:</label>
     <input class="w3-input w3-border" type="text" id="volunteerName" formControlName="volunteerName" />
-    <!-- Error messages for Volunteer Name -->
-    <div *ngIf="volunteerForm.get('volunteerName')?.hasError('required') && volunteerForm.get('volunteerName')?.touched" class="w3-text-red">
+    <div *ngIf="volunteerNameControl?.hasError('required') && volunteerNameControl?.touched" class="w3-text-red">
       Volunteer Name is required.
     </div>
-    <div *ngIf="volunteerForm.get('volunteerName')?.hasError('minlength') && volunteerForm.get('volunteerName')?.touched" class="w3-text-red">
+    <div *ngIf="volunteerNameControl?.hasError('minlength') && volunteerNameControl?.touched" class="w3-text-red">
       Volunteer Name must be at least 3 characters.
     </div>
   </div>
 
-  <!-- Volunteer Information Group -->
   <fieldset formGroupName="volunteerInfo">
-    <!-- Phone Number -->
     <div class="w3-section">
       <label for="phoneNumber">Phone Number:</label>
       <input class="w3-input w3-border" type="text" id="phoneNumber" formControlName="phoneNumber" />
-      <!-- Error messages for Phone Number -->
-      <div *ngIf="volunteerForm.get('volunteerInfo.phoneNumber')?.hasError('required') && volunteerForm.get('volunteerInfo.phoneNumber')?.touched" class="w3-text-red">
+      <div *ngIf="phoneNumberControl?.hasError('required') && phoneNumberControl?.touched" class="w3-text-red">
         Phone Number is required.
       </div>
-      <div *ngIf="volunteerForm.get('volunteerInfo.phoneNumber')?.hasError('pattern') && volunteerForm.get('volunteerInfo.phoneNumber')?.touched" class="w3-text-red">
+      <div *ngIf="phoneNumberControl?.hasError('pattern') && phoneNumberControl?.touched" class="w3-text-red">
         Invalid Phone Number.
       </div>
     </div>
 
-    <!-- Email -->
     <div class="w3-section">
       <label for="volunteerEmail">Email:</label>
       <input class="w3-input w3-border" type="text" id="volunteerEmail" formControlName="volunteerEmail" />
-      <!-- Error messages for Email -->
-      <div *ngIf="volunteerForm.get('volunteerInfo.volunteerEmail')?.hasError('required') && volunteerForm.get('volunteerInfo.volunteerEmail')?.touched" class="w3-text-red">
+      <div *ngIf="volunteerEmailControl?.hasError('required') && volunteerEmailControl?.touched" class="w3-text-red">
         Email is required.
       </div>
-      <div *ngIf="volunteerForm.get('volunteerInfo.volunteerEmail')?.hasError('email') && volunteerForm.get('volunteerInfo.volunteerEmail')?.touched" class="w3-text-red">
+      <div *ngIf="volunteerEmailControl?.hasError('email') && volunteerEmailControl?.touched" class="w3-text-red">
         Invalid email.
       </div>
     </div>

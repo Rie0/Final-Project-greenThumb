@@ -1,10 +1,9 @@
-
 <div class="container-wrapper">
-  <div *ngFor="let project of projects" class="container" [style.background-image]=" 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url(' + projectTypeImages[project.projectType] + ')'">
-      <a [routerLink]="['/Project', project.projectId]">
-        <h3>{{ project.projectName }}</h3>
-      </a>
-      <p>{{ getFormattedProjectType(project.projectType) }}</p>      
-    </div>
+  <div *ngFor="let project of projects" class="container" [style.background-image]="'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url(' + projectTypeImages[project.projectType].path + ')'">
+    <a [routerLink]="['/Project', project.projectId]">
+      <h3>{{ project.projectName }}</h3>
+    </a>
+    <p>{{ getFormattedProjectType(project.projectType) }}</p>
+    <img [src]="projectTypeImages[project.projectType].path" [alt]="projectTypeImages[project.projectType].alt" style="display: none;">
   </div>
-
+</div>

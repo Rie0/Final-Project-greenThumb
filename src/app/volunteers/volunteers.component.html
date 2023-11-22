@@ -1,26 +1,26 @@
-<body class = "bgimg-1">
-  
+<body class="bgimg-1">
 
-<div class="w3-container" >
+  <div class="w3-container">
 
-  <div class = "w3-section">
-    <label class="w3-text-blue" for="searchInput">Search by name:</label>
-    <input class="w3-input w3-border" type="text" id="searchInput" [(ngModel)]="searchString" (input)="onSearch()" placeholder="Search..." />
+    <div class="w3-section">
+      <label class="w3-text-blue" for="searchInput">Search by name:</label>
+      <input class="w3-input w3-border" type="text" id="searchInput" [(ngModel)]="searchString" (input)="onSearch()" placeholder="Search..." />
+    </div>
+
+    <div *ngFor="let volunteer of volunteers" class="w3-card-4 w3-margin">
+      <h3>{{ volunteer.volunteerName }}</h3>
+      <p>Phone Number: {{ volunteer.volunteerInfo?.phoneNumber }}</p>
+      <p>Email: {{ volunteer.volunteerInfo?.volunteerEmail }}</p>
+      <p>Project: {{ volunteer.project?.projectName }} ({{ volunteer.project?.projectType }})</p>
+    </div>
+
+    <!-- Error message -->
+    <div *ngIf="errorMessage" class="w3-panel w3-pale-red w3-border w3-border-red w3-padding error-message">
+      {{ errorMessage }}
+    </div>
   </div>
 
-  <div *ngFor="let volunteer of volunteers" class="w3-card-4 w3-margin">
-    <h3>{{ volunteer.volunteerName }}</h3>
-    <p>Phone Number: {{ volunteer.volunteerInfo?.phoneNumber }}</p>
-    <p>Email: {{ volunteer.volunteerInfo?.volunteerEmail }}</p>
-    <p>Project: {{ volunteer.project?.projectName }} ({{ volunteer.project?.projectType }})</p>
-  </div>
-
-  <!-- Error message -->
-  <div *ngIf="errorMessage" class="w3-panel w3-pale-red w3-border w3-border-red w3-padding error-message">
-    {{ errorMessage }}
-  </div>
-</div>
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64 w3-opacity ">
-</footer>
+  <!-- Footer -->
+  <footer class="w3-center w3-black w3-padding-64 w3-opacity ">
+  </footer>
 </body>

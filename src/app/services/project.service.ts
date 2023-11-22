@@ -40,10 +40,7 @@ export class ProjectService {
   
   return this.http.delete(url).pipe(
     catchError((error) => {
-      alert('Cannot remove a project that has enlisted volunteers');
       console.error('Error deleting project:', error);
-
-      // Rethrow the error or return a custom error object
       return throwError(error);
     })
   );

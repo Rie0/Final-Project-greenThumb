@@ -1,3 +1,4 @@
+// volunteers.component.ts
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { VolunteerService } from '../services/volunteer.service';
 
@@ -7,14 +8,13 @@ import { VolunteerService } from '../services/volunteer.service';
   styleUrls: ['./volunteers.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class VolunteersComponent implements OnInit{
-  volunteers: any[]=[];
+export class VolunteersComponent implements OnInit {
+  volunteers: any[] = [];
   searchString: string = '';
   errorMessage: string = '';
 
-  constructor(private volunteerService: VolunteerService){}
+  constructor(private volunteerService: VolunteerService) {}
 
-  
   ngOnInit() {
     this.getVolunteers();
   }
@@ -22,8 +22,7 @@ export class VolunteersComponent implements OnInit{
   getVolunteers() {
     this.volunteerService.getVolunteers().subscribe(
       (volunteers: any[]) => {
-        //console.log('Volunteers:', volunteers);
-        this.volunteers = volunteers;
+        this.updateVolunteersList(volunteers);
       },
       (error: any) => {
         console.log('Error:', error);
@@ -35,18 +34,25 @@ export class VolunteersComponent implements OnInit{
     if (this.searchString.trim() !== '') {
       this.volunteerService.getVolunteersContainingString(this.searchString).subscribe(
         (filteredVolunteers: any[]) => {
-          this.volunteers = filteredVolunteers;
+          this.updateVolunteersList(filteredVolunteers);
           this.errorMessage = ''; // Clear any previous error messages
         },
         (error: any) => {
           console.log('Error:', error);
           this.errorMessage = 'No volunteer found.'; // Display an error message
-          this.volunteers = []; //return an empty list when no volunteer is found
+          this.clearVolunteersList();
         }
       );
     } else {
-      // If the search string is empty.
       this.getVolunteers();
     }
+  }
+
+  private updateVolunteersList(volunteers: any[]) {
+    this.volunteers = volunteers;
+  }
+
+  private clearVolunteersList() {
+    this.volunteers = [];
   }
 }
