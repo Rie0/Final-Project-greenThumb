@@ -12,53 +12,48 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
+  private handleError(error: HttpErrorResponse) { 
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(`Error status: ${error.status}, Details: ${JSON.stringify(error.error)}`);
+    }
+    return throwError('An error occurred. Please check the console for details.');
+  }
+
+  private getRequestOptions(): { headers: HttpHeaders } {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'      
+      })
+    };
+  }
+  
+// Requests
+
   getProjects(): Observable<any> {
-    return this.http.get(this.API_URL)
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http.get(this.API_URL, this.getRequestOptions())
+      .pipe(catchError(this.handleError));
   }
 
   getSingleProject(projectId: number): Observable<any> {
     const url = `${this.API_URL}/${projectId}`;
-    return this.http.get(url)
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http.get(url, this.getRequestOptions())
+      .pipe(catchError(this.handleError));
   }
 
   updateProjectName(projectId: number, projectNameDTO: any): Observable<any> {
     const url = `${this.API_URL}/name/${projectId}`;
-    return this.http.patch(url, projectNameDTO)
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http.patch(url, projectNameDTO, this.getRequestOptions())
+      .pipe(catchError(this.handleError));
   }
 
   deleteProject(projectId: number): Observable<any> {
-  const url = `${this.API_URL}/${projectId}`;
-  
-  return this.http.delete(url).pipe(
-    catchError((error) => {
-      console.error('Error deleting project:', error);
-      return throwError(error);
-    })
-  );
-}
-    
-  
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      console.error(
-        `Error status: ${error.status}, ` +
-        `Details: ${JSON.stringify(error.error)}`);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError('An error occured. please check the console for datails.');
+    const url = `${this.API_URL}/${projectId}`;
+    return this.http.delete(url, this.getRequestOptions())
+      .pipe(catchError((error) => {
+        console.error('Error deleting project:', error);
+        return throwError(error);
+      }));
   }
 }

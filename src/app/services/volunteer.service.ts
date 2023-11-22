@@ -11,48 +11,42 @@ export class VolunteerService {
 
   constructor(private http: HttpClient) { }
 
-  getVolunteers(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_URL)
-      .pipe(
-        catchError(this.handleError)
-      );
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(`Error status: ${error.status}, Details: ${JSON.stringify(error.error)}`);
+    }
+    return throwError('An error occurred. Please check the console for details.');
   }
 
-  postVolunteer(volunteerData: any): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<void>(this.API_URL, volunteerData, { headers })
-      .pipe(
-        catchError(this.handleError)
-      );
+  private getRequestOptions(): { headers: HttpHeaders } {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+  }
+
+  getVolunteers(): Observable<any[]> {
+    return this.http.get<any[]>(this.API_URL, this.getRequestOptions())
+      .pipe(catchError(this.handleError));
+  }
+
+  postVolunteer(volunteerData: any): Observable<void> {
+    return this.http.post<void>(this.API_URL, volunteerData, this.getRequestOptions())
+      .pipe(catchError(this.handleError));
   }
 
   assignVolunteerToProject(volunteerId: number, projectId: number): Observable<any> {
     const url = `${this.API_URL}/${volunteerId}/assign/${projectId}`;
-    return this.http.post(url, {})
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http.post(url, {}, this.getRequestOptions())
+      .pipe(catchError(this.handleError));
   }
 
   getVolunteersContainingString(searchString: string): Observable<any[]> {
     const searchUrl = `${this.API_URL}/str?str=${searchString}`;
-    return this.http.get<any[]>(searchUrl)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      console.error(
-        `Error status: ${error.status}, ` +
-        `Details: ${JSON.stringify(error.error)}`);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError('An error occured. please check the console for datails.');
+    return this.http.get<any[]>(searchUrl, this.getRequestOptions())
+      .pipe(catchError(this.handleError));
   }
 }
