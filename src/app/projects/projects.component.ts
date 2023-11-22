@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ProjectService } from '../services/project.service';
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
@@ -8,7 +8,8 @@ import { EMPTY } from 'rxjs';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProjectsComponent  implements OnInit{
   projects: any[]=[];

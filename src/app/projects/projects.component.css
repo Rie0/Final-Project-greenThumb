@@ -1,57 +1,35 @@
+
 .container {
-  flex: 0 0 23%; /* Adjust the width as needed */
-  position: relative;
+  flex: 0 0 23%;
   margin: 10px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background-size: cover;
-  color: #fff;
+  color: #ffffffc3;
+  height: 180px;
 
 }
 
-/* Style for the link */
 .container a {
   text-decoration: none;
-  color: #ffffff;
+  color: #ffffffc4;
 }
 
-/* Style for the link on hover */
 .container a:hover {
   text-decoration: underline;
-}
-
-/* Style for the heading */
-.container h3 {
-  margin: 0;
-}
-
-/* Style for the project type paragraph */
-.container p {
-  margin: 5px 0;
 }
 
 /* Style for the background image */
 .container::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Adjust the background color and opacity as needed */
+  inset: 0;
+  background:url('../../assets/images/ForestBackground.jpg') center/cover fixed no-repeat;
   z-index: -1;
-  border-radius: 8px;
 }
 
-/* Style for the click message */
-.container p:last-child {
-  margin-top: 15px;
-}
-
-/* Style for the container wrapper */
 .container-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
