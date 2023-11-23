@@ -7,14 +7,18 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. [Introduction](#introduction)
 2. [Features](#features)
-3. [Usage](#usage)
-4. [Technologies Used](#technologies-used)
-5. [Resources](#Resources)
-6. [License](#license)
+3. [Use Case Diagram](#Use-Case-Diagram)
+4. [Usage](#usage)
+5. [Technologies Used](#technologies-used)
+6. [Link to Presentation](#Link-to-Presentation)
+7. [Resources](#Resources)
+8. [License](#license)
 
 ## Introduction
 
 Green Thumb was designed as a non-profit organization, with a mission to protect the environment. This project has been a concept in my mind ever since I was tasked with creating a website for one of my college projects.
+
+
 
 ## Features
 
@@ -41,6 +45,20 @@ Green Thumb was designed as a non-profit organization, with a mission to protect
 6. **Form Validation:**
    - Use form validation to ensure data integrity.
    - Users receive prompts for incorrect inputs during volunteer registration.
+  
+  **Main Page**<br>
+<img src="Readme images/Main Page 1.PNG" alt="Main Page 1" width="400" height="300"> <img src="Readme images/Main Page 2.PNG" alt="Main Page 2" width="400" height="300"><br>
+**Projects List**<br>
+<img src="Readme images/Projects List.PNG" alt="Projects List" width="400" height="200"> <br>
+**Volunteers List**<br>
+<img src="Readme images/Volunteer List.PNG" alt="Volunteer List" width="400" height="150"><br>
+**Volunteer Form**<br>
+<img src="Readme images/Volunteer Form.PNG" alt="Volunteer Form" width="400" height="200"><br>
+**Single Project**<br>
+<img src="Readme images/Single Project.PNG" alt="Single Project" width="400" height="200">
+
+## Use Case Diagram
+<img src="Readme images/Green Thumb Usecase.jpg" alt="Use Case">
      
 
 ## Usage
@@ -62,6 +80,10 @@ Run the project using the command `ng serve`. You will be redirected to the home
 - **Git and GitHub:** Version control system and source code management.
 - **Postman:** An API development and testing tool used for testing API endpoints.
 - **!!!:** A cloud platform used for deploying and hosting the application.
+
+## Link to Presentation
+
+presentation: https://www.canva.com/design/DAFymWLu80U/CCapXfAX4mRdXvgOxHlUMg/edit?utm_content=DAFymWLu80U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 
 ## Resources
